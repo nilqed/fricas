@@ -4736,6 +4736,10 @@ esac
 ## How are we supposed to tell the Lisp system to eval an expression
 ## in batch mode?  What is the extension of a compiled Lisp file?
 case $fricas_lisp_flavor in
+    abcl)
+       fricas_quiet_flags='-batch --noinform --noinit --nosystem'
+       fricas_eval_flags='--eval'
+       ;;       
     gcl)
        fricas_quiet_flags='-batch'
        fricas_eval_flags='-eval'

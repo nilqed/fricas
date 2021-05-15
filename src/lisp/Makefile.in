@@ -148,6 +148,17 @@ do_it.sbcl do_it.clisp do_it.openmcl do_it.lispworks: \
          | $(LISP_CMD)
 	 $(STAMP) $@
 
+do_it.abcl: \
+   fricas-lisp.lisp fricas-package.lisp fricas-config.lisp \
+   primitives.lisp
+	echo '(load "fricas-package.lisp")' \
+	    '(load "fricas-config.lisp")' \
+	    '(load (compile-file "fricas-lisp.lisp"))' \
+	    '(load (compile-file "primitives.lisp"))' \
+         | $(LISP_CMD)
+	 $(STAMP) $@
+
+
 do_it.cmucl: fricas-lisp.lisp fricas-package.lisp \
            fricas-config.lisp primitives.lisp
 	echo '(load "fricas-package.lisp")' \
